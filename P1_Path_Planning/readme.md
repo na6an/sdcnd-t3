@@ -1,6 +1,8 @@
 # Path Planning
-## 
+## Compile
+This project is confirmed to compile on cmake 3.5.1, GNU make 4.1, gcc 5.4.0 in Ubuntu Bash on Windows 10 and on Ubuntu 18.04.
 
+## 
 
 
 
