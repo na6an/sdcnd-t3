@@ -1,10 +1,32 @@
 # Path Planning
 ## Compile
-This project is confirmed to compile on cmake 3.5.1, GNU make 4.1, gcc 5.4.0 in Ubuntu Bash on Windows 10 and on Ubuntu 18.04.
+This project is confirmed to compile on cmake 3.5.1, GNU make 4.1, gcc 7.3.0 in Ubuntu Bash on Windows 10 and on Ubuntu 18.04.
 
-## 
+## Result
+All following evaluation criteria are met.  
+- The car is able to drive at least 4.32 miles (1 loop) without incident.  
+- The car drives according to the speed limit (50 mph).  
+- Max Acceleration and Jerk are not Exceeded.  
+- Car does not have collisions.  
+- The car stays in its lane, except for the time between changing lanes.  
+- The car is able to change lanes.  
+Here is the full video.  
+[![IMAGE](http://img.youtube.com/vi/DEagY_2I-ZI/0.jpg)](https://youtu.be/DEagY_2I-ZI)  
 
+## Reflection
+Just like the MPC project from term 2, there is a tradeoff between path generation and computing resources.  
+Make sure to close any background programs if the computer spec is low.  
+I tried to use number of waypoints as small as possible for this reason.  
+Lengthy waypoint addition also influence the vehicle response to be delayed to slow down when a slow vehicle is detected in front.  
 
+Thus, I selected `30-previous_path_x.size()` in the waypoint addition loop,  
+`for (int i = 1; i <= (int) 30-previous_path_x.size(); i++)` so that it adds only one waypoint ahead at a time.  
+(since `previous_path_x.size()`appears to be 29 constantly)
+
+I also implemented a basic PD control to adjust the speed of the vehicle as smooth as possible when slow vehyicle in front.  
+This PD values reset every time the vehicle changes the lane.  
+I kept this implementation because it appears to help smoothing the speed changes better than without it,  
+but still not perfectly matching to the speed of the vehicle in front. So, there is a room for improvement.
 
 ## Project Detail
 ### Simulator
