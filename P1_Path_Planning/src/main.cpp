@@ -269,7 +269,8 @@ int main() {
     		for (int i = 0; i < (int) sensor_fusion.size(); i++){
         		float s = sensor_fusion[i][5];
         		float d = sensor_fusion[i][6];
-        		if (d>0 && d<4) {
+			//identify in which lane sensor fusion data belongs
+        		if (d>0 && d<4) { 
                   car_lane = 1;
                 } 
                 else if (d>4 && d<8) {
@@ -295,9 +296,9 @@ int main() {
                 	right_too_close |= car_s - 10 < check_car_s && car_s + 50 > check_car_s;
                 }
             }
-            std::cout << lane << ", s:" << car_s << ", d:" << car_d << ", v:" << car_speed 
-            << ", cte:" << cte_s << ", d:" << d << ", p:" << p << ", " << d+p << ", " << car_speed-vel << ", "
-            << too_close << ", " << left_too_close << ", " << right_too_close << ", " << lane_change << std::endl;
+            // std::cout << lane << ", s:" << car_s << ", d:" << car_d << ", v:" << car_speed 
+            // << ", cte:" << cte_s << ", d:" << d << ", p:" << p << ", " << d+p << ", " << car_speed-vel << ", "
+            // << too_close << ", " << left_too_close << ", " << right_too_close << ", " << lane_change << std::endl;
 
             vel0 = vel;
             if (too_close) { // Car ahead
@@ -384,7 +385,7 @@ int main() {
 				ptsy.push_back(ref_y_prev);
 				ptsy.push_back(ref_y);
             }
-
+	    // create waypoints
             vector<double> next_wp0 = getXY(car_s+30, (2+4*(lane-1)), map_waypoints_s,map_waypoints_x,map_waypoints_y);
             vector<double> next_wp1 = getXY(car_s+60, (2+4*(lane-1)), map_waypoints_s,map_waypoints_x,map_waypoints_y);
             vector<double> next_wp2 = getXY(car_s+90, (2+4*(lane-1)), map_waypoints_s,map_waypoints_x,map_waypoints_y);
@@ -399,7 +400,8 @@ int main() {
             //vector<double> fnet0 = getFrenet(next_wp0[0], next_wp0[1], car_yaw, map_waypoints_x,map_waypoints_y);
             //std::cout << fnet0[1] << ", " << car_d << ", " <<
 			//	too_close << ", " << left_too_close << ", " << right_too_close << ", " << lane_change << std::endl;
-
+	    
+		//lane centering
             if(lane_change == false && cte_d>0){
             	ref_yaw -= 0.5;
             }
@@ -417,7 +419,7 @@ int main() {
 
             tk::spline s;
             s.set_points(ptsx, ptsy);
-
+		
             for (int i = 0; i < (int) previous_path_x.size(); i++){
 				next_x_vals.push_back(previous_path_x[i]);
 				next_y_vals.push_back(previous_path_y[i]);
@@ -427,7 +429,7 @@ int main() {
             double target_y = s(target_x);
             double target_dist = sqrt((target_x)*(target_x)+(target_y)*(target_y));
             double x_add_on = 0;
-
+		// add path ahead
             for (int i = 1; i <= (int) 30-previous_path_x.size(); i++){
 				double N = (target_dist/(0.02*vel/2.24));
 				double x_point = x_add_on + (target_x)/N;
