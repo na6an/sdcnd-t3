@@ -10,7 +10,8 @@ All following evaluation criteria are met.
 - Car does not have collisions.  
 - The car stays in its lane, except for the time between changing lanes.  
 - The car is able to change lanes.  
-Here is the full video.  
+
+Here is the full video:  
 [![IMAGE](http://img.youtube.com/vi/DEagY_2I-ZI/0.jpg)](https://youtu.be/DEagY_2I-ZI)  
 
 ## Reflection
