@@ -51,6 +51,29 @@ catkin_make
 source devel/setup.sh  
 roslaunch launch/styx.launch  
 ```
+## Troubleshoot
+
+```
+CMake Error at /opt/ros/kinetic/share/pcl_ros/cmake/pcl_rosConfig.cmake:113 (message):  
+  Project 'pcl_ros' specifies '/usr/include/pcl-1.7' as an include dir, which  
+  is not found.  It does neither exist as an absolute directory nor in  
+  '/opt/ros/kinetic//usr/include/pcl-1.7'.  Check the issue tracker  
+  'https://github.com/ros-perception/perception_pcl/issues' and consider  
+  creating a ticket if the problem has not been reported yet.  
+Call Stack (most recent call first):  
+  /opt/ros/kinetic/share/catkin/cmake/catkinConfig.cmake:76 (find_package)  
+  waypoint_follower/CMakeLists.txt:10 (find_package)
+```
+
+`sudo apt install ros-kinetic-pcl-ros`
+
+
+==
+
+`ERROR: cannot launch node of type [tl_detector/tl_detector.py]: can't locate node [tl_detector.py] in package [tl_detector]`
+
+`find ~/(path-to)/CarND-Capstone/ros -type f -iname "*.py" -exec chmod +x {} \;`
+
 
 
 ## Code Structure
