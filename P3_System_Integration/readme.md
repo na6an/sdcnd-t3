@@ -2,6 +2,16 @@
 ### Programming a Real Self-Driving Car
 
 
+## Run
+`cd ~(path-to)/CarND-Capstone/ros`  
+Then,  
+```
+cd ros  
+catkin_make  
+source devel/setup.sh  
+roslaunch launch/styx.launch  
+```
+
 
 ## Code Structure
 
