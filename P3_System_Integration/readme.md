@@ -1,7 +1,11 @@
 # System Integration
 ### Programming a Real Self-Driving Car
 
+
+
 ## Code Structure
+
+  <img src="https://github.com/na6an/sdcnd-t3/blob/master/P3_System_Integration/img/final-project-ros-graph-v2.png" alt="alt text" width="920" height="640">  
 
 Below is a brief overview of the repo structure, along with descriptions of the ROS nodes.  
 The code that you will need to modify for the project will be contained entirely within the  
